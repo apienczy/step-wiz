@@ -13,7 +13,48 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.4.1.2');
   api.use('ecmascript');
+  api.use('check');
+  api.use('tracker');
+
+  // Client
+  api.use([
+    'livedata', 
+    'underscore', 
+    'deps', 
+    'templating', 
+    'ui', 
+    'blaze', 
+    'ejson', 
+    'reactive-dict', 
+    'twbs:bootstrap@3.3.6',
+    'jquery']
+  );
+
+  // For validation purposes
+  api.use([
+    'aldeed:simple-schema@1.3.3',
+    'mdg:validation-error@0.1.0',
+  ]);
+
   api.mainModule('step-wiz.js');
+
+  // Exports
+  api.export([
+    'swWizard',
+    'swStep']);
+
+  // Core functionality components
+  api.addFiles([
+    'imports/client/modules/step/step.js',
+    'imports/client/modules/step/step.html',
+    'imports/client/modules/wizard/_swWizard.js',
+    'imports/client/modules/wizard/swWizard.js',
+    'imports/client/modules/wizard/swWizard.html']);
+
+  // External plugins
+  api.addFiles ([
+    'imports/client/plugins/steps/jquery.steps.css',
+    'imports/client/plugins/steps/jquery.steps.min.js']);
 });
 
 Package.onTest(function(api) {
